@@ -23,3 +23,8 @@ parts:
     stage-packages:
       - libnotify-bin
       - pulseaudio-utils
+  desktop-entry:
+    plugin: dump
+    source: .
+    organize:
+      usr/share/applications/hydrateme.desktop: usr/share/applications/hydrateme.desktop
