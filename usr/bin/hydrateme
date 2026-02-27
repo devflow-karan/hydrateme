@@ -1,2 +1,2 @@
 #!/bin/bash
-exec python3 /usr/share/hydrateme/hydrateme.py "$@"
+exec python3 "${SNAP:-}/usr/share/hydrateme/hydrateme.py" "$@"

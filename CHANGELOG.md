@@ -18,6 +18,10 @@
 - Fixed issue where the application would allow multiple processes to run in the background concurrently. Added single-instance `fcntl` locks.
 - Changed default application behavior to immediately show the Settings UI when launched via the application menu or CLI so it does not appear broken.
 
+## [1.3.4] - 2026-02-27
+### Fixed
+- Fixed snap runner issue where `python3` could not find the main script by using `$SNAP` environment variable for path resolution.
+
 ## [1.3.3] - 2026-02-27
 ### Fixed
 - Fixed missing logo and sound when running as a Snap by dynamically prepending `$SNAP` environment variable to asset paths.
