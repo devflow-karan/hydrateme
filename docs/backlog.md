@@ -8,3 +8,5 @@
 - Task: Resolve background system tray issue by adding IPC signals so the application menu launches the settings window.
 - Task: Change the default application reminder sound to the newly provided `paani.wav` file.
 - Task: Add desktop entry `usr/share/applications/hydrateme.desktop` for snap packaging.
+- Task: Ensure Ubuntu 22.04 compatibility by downgrading snap base to core22.
+- Task: Fix missing snap assets (logo and sound) by dynamically resolving paths with `$SNAP`.

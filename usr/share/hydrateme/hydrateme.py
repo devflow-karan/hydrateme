@@ -14,6 +14,14 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QIcon, QFont, QAction
 from PyQt6.QtCore import QTimer, Qt, QSocketNotifier
 
+
+def get_asset_path(path):
+    snap_dir = os.environ.get("SNAP")
+    if snap_dir and path.startswith("/usr/"):
+        # Strip leading slash to join correctly with snap_dir
+        return os.path.join(snap_dir, path.lstrip("/"))
+    return path
+
 CONFIG_FILE = os.path.expanduser("~/.config/hydrateme.json")
 # Default interval 30 minutes
 DEFAULT_INTERVAL = 30
@@ -177,7 +185,7 @@ class HydrateMeApp:
         self.settings_dialog = None
         
         # Get path to icon file
-        self.icon_path = "/usr/share/icons/hicolor/scalable/apps/hydrateme.svg"
+        self.icon_path = get_asset_path("/usr/share/icons/hicolor/scalable/apps/hydrateme.svg")
         if not os.path.exists(self.icon_path):
             self.icon_path = os.path.join(os.path.dirname(__file__), "hydrateme.svg") # local fallback
             
@@ -222,7 +230,7 @@ class HydrateMeApp:
 
     def trigger_sound(self):
         if self.config.sound:
-            sound_file = self.config.custom_sound_path if self.config.custom_sound_path else "/usr/share/sounds/paani.wav"
+            sound_file = self.config.custom_sound_path if self.config.custom_sound_path else get_asset_path("/usr/share/sounds/paani.wav")
             subprocess.Popen(["paplay", sound_file])
 
     def show_reminder(self):

@@ -1,6 +1,6 @@
 # HydrateMe
 
-HydrateMe is a lightweight desktop application for Ubuntu that reminds you to drink water every 30 minutes. It runs in the system tray, shows notifications, and can play a custom sound until you acknowledge the reminder.
+HydrateMe is a lightweight desktop application for Ubuntu (22.04+) that reminds you to drink water every 30 minutes. It runs in the system tray, shows notifications, and can play a custom sound until you acknowledge the reminder.
 
 ## Features
 - System‑tray icon with menu
