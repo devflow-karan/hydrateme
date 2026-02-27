@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=HydrateMe
 Comment=Reminds you to drink water every 30 minutes
-Exec=/usr/bin/hydrateme
+Exec=hydrateme
 Icon=hydrateme
 Terminal=false
 Type=Application

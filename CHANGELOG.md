@@ -17,3 +17,6 @@
 ### Fixed
 - Fixed issue where the application would allow multiple processes to run in the background concurrently. Added single-instance `fcntl` locks.
 - Changed default application behavior to immediately show the Settings UI when launched via the application menu or CLI so it does not appear broken.
+## [1.3.1] - 2026-02-27
+### Added
+- Added desktop entry file `usr/share/applications/hydrateme.desktop` for snap packaging.
