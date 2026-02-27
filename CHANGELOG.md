@@ -21,6 +21,7 @@
 ## [1.3.4] - 2026-02-27
 ### Fixed
 - Fixed snap runner issue where `python3` could not find the main script by using `$SNAP` environment variable for path resolution.
+- Fixed Python snap build failure by adding missing `dbus-python` dependency and necessary build/stage packages (`libdbus-1-dev`, `pkg-config`, Qt6 runtime libs).
 
 ## [1.3.3] - 2026-02-27
 ### Fixed

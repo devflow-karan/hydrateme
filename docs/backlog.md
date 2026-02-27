@@ -11,3 +11,4 @@
 - Task: Ensure Ubuntu 22.04 compatibility by downgrading snap base to core22.
 - Task: Fix missing snap assets (logo and sound) by dynamically resolving paths with `$SNAP`.
 - Task: Fix snap runner script path by dynamically referencing `$SNAP`.
+- Task: Fix Python snap build failure by adding dependencies and system libraries.
