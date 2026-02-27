@@ -1,0 +1,12 @@
+Package: hydrateme
+Version: 1.0-1
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.10), python3-pyqt6, python3-dbus, pulseaudio-utils, libnotify-bin
+Maintainer: "Karan Kumar" <karankumarsacher@gmail.com>
+Description: A desktop app that reminds you to drink water every 30 minutes
+ A simple PyQt6 application that runs in the background
+ and pops up a "force attention" window to remind you to hydrate.
+ It integrates with GNOME screen lock to show notifications
+ instead of a popup if you are away.
