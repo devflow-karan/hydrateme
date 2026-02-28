@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.5] - 2026-02-28
+### Fixed
+- Fixed `metadata-generation-failed` error during snap build by adding `libglib2.0-dev` build dependency for `dbus-python`.
+
 ## [1.3.0] - 2026-02-27
 ### Added
 - Make the newly added `paani.wav` the default reminder audio instead of `message.oga`.

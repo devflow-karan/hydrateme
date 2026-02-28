@@ -1,6 +1,6 @@
 name: hydrateme
 base: core22
-version: '1.3.4'
+version: '1.3.5'
 summary: A simple desktop app to remind you to drink water
 description: |
   HydrateMe runs in your system tray and periodically reminds you 
@@ -26,6 +26,7 @@ parts:
       - pkg-config
       - python3-dev
       - gcc
+      - libglib2.0-dev
     stage-packages:
       - libnotify-bin
       - pulseaudio-utils
@@ -35,6 +36,7 @@ parts:
       - libfontconfig1
       - libx11-6
       - libdbus-1-3
+      - libglib2.0-0
   desktop-entry:
     plugin: dump
     source: .

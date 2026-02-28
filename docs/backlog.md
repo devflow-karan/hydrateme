@@ -12,3 +12,4 @@
 - Task: Fix missing snap assets (logo and sound) by dynamically resolving paths with `$SNAP`.
 - Task: Fix snap runner script path by dynamically referencing `$SNAP`.
 - Task: Fix Python snap build failure by adding dependencies and system libraries.
+- Task: Fix `metadata-generation-failed` by adding `libglib2.0-dev` to build-packages.
