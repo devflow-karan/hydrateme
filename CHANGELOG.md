@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.6] - 2026-02-28
+### Fixed
+- Fixed Qt xcb platform plugin failure in Snap by adding missing `libxcb-cursor0` and related XCB dependencies to `stage-packages`.
+
 ## [1.3.5] - 2026-02-28
 ### Fixed
 - Fixed `metadata-generation-failed` error during snap build by adding `libglib2.0-dev` build dependency for `dbus-python`.
