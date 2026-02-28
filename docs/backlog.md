@@ -13,3 +13,4 @@
 - Task: Fix snap runner script path by dynamically referencing `$SNAP`.
 - Task: Fix Python snap build failure by adding dependencies and system libraries.
 - Task: Fix `metadata-generation-failed` by adding `libglib2.0-dev` to build-packages.
+- Task: Improve `.deb` package distribution with a custom build script and clear installation instructions.

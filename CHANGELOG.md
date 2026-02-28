@@ -3,6 +3,8 @@
 ## [1.3.5] - 2026-02-28
 ### Fixed
 - Fixed `metadata-generation-failed` error during snap build by adding `libglib2.0-dev` build dependency for `dbus-python`.
+- Enhanced `.deb` package distribution by updating the `DEBIAN/control` dependencies and providing a new `scripts/build_deb.sh` build script.
+- Updated `README.md` with recommended `apt` installation instructions to ensure all dependencies are automatically resolved.
 
 ## [1.3.0] - 2026-02-27
 ### Added

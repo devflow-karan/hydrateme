@@ -10,9 +10,25 @@ HydrateMe is a lightweight desktop application for Ubuntu (22.04+) that reminds 
 - Snap package ready with a proper desktop entry
 
 ## Installation
+
+### From .deb Package (Recommended)
+This is the easiest way to install HydrateMe on Ubuntu. Download the `.deb` file and install it using `apt` so that all dependencies are automatically resolved:
+
 ```bash
-# Build the snap
+sudo apt update
+sudo apt install ./hydrateme_1.3.5-1_all.deb
+```
+
+### From Snap
+Building the snap ensures an isolated environment with all dependencies bundled:
+
+```bash
+# Build the snap locally
 snapcraft pack
+# Or build remotely if you don't have Lexus/Multipass
+snapcraft remote-build
+# Install the generated snap
+sudo snap install --dangerous --classic hydrateme_*.snap
 ```
 
 ## Usage
