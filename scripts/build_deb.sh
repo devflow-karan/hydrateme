@@ -22,6 +22,10 @@ cp -r DEBIAN "$BUILD_DIR/"
 # Copy /usr resources
 cp -r usr "$BUILD_DIR/"
 
+# Copy Python package source code
+mkdir -p "$BUILD_DIR/usr/share/hydrateme/hydrateme"
+cp -r src/hydrateme/* "$BUILD_DIR/usr/share/hydrateme/hydrateme/"
+
 # Update VERSION in control file if it doesn't match
 sed -i "s/^Version:.*/Version: $VERSION-1/" "$BUILD_DIR/DEBIAN/control"
 
@@ -29,8 +33,10 @@ sed -i "s/^Version:.*/Version: $VERSION-1/" "$BUILD_DIR/DEBIAN/control"
 chmod -R 755 "$BUILD_DIR/usr"
 chmod 755 "$BUILD_DIR/DEBIAN"
 chmod 644 "$BUILD_DIR/DEBIAN/control"
+[ -f "$BUILD_DIR/DEBIAN/postinst" ] && chmod 755 "$BUILD_DIR/DEBIAN/postinst"
+[ -f "$BUILD_DIR/DEBIAN/postrm" ] && chmod 755 "$BUILD_DIR/DEBIAN/postrm"
 chmod +x "$BUILD_DIR/usr/bin/hydrateme"
-chmod +x "$BUILD_DIR/usr/share/hydrateme/hydrateme.py"
+chmod +x "$BUILD_DIR/usr/share/hydrateme/main.py"
 
 # Build the package
 DEB_NAME="hydrateme_${VERSION}-1_all.deb"

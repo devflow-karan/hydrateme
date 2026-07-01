@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.4.0] - 2026-07-01
+### Added
+- Modular architecture with deep package segmentation (src/hydrateme/).
+- Automated test coverage targeting 80%+ lines with pytest-qt and path isolations.
+- Polymorphic desktop environment backends (GNOME, KDE, XFCE, Cinnamon, MATE, LXQt).
+- Cascading audio pipeline (paplay -> pw-play -> aplay -> QSoundEffect).
+- Reversed notification prioritize chain (Qt Tray -> DBus -> notify-send -> QMessageBox).
+- XDG folder specifications compliance (config, state, logs).
+- User-restricted runtime locks to support safe multi-user shared machines.
+- Config schema migrations and diagnostic boot logging.
+- Global crash reporters with user-safe PyQt recovery prompts.
+- Github templates, License, Telemetry policies, and developer Contribution guidelines.
+- Split CI/CD workflows (lint, tests, build, release) and smoke test verification.
+- Flatpak and AppImage manifest specifications.
+
 ## [1.3.6] - 2026-02-28
 ### Fixed
 - Fixed Qt xcb platform plugin failure in Snap by adding missing `libxcb-cursor0` and related XCB dependencies to `stage-packages`.

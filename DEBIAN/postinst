@@ -1,0 +1,16 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Karan Kumar
+set -e
+
+# Rebuild hicolor icon cache
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f -q /usr/share/icons/hicolor || true
+fi
+
+# Rebuild desktop database to register shortcut launcher
+if [ -x /usr/bin/update-desktop-database ]; then
+    update-desktop-database -q || true
+fi
+
+exit 0

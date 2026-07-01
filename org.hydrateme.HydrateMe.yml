@@ -1,0 +1,27 @@
+app-id: org.hydrateme.HydrateMe
+runtime: org.kde.Platform
+runtime-version: '6.5'
+sdk: org.kde.Sdk
+command: hydrateme
+finish-args:
+  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.ScreenSaver
+  - --talk-name=org.gnome.ScreenSaver
+  - --talk-name=org.mate.ScreenSaver
+  - --talk-name=org.cinnamon.ScreenSaver
+  - --device=dri
+  - --pulseaudio
+modules:
+  - name: hydrateme
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-deps --prefix=${FLATPAK_DEST} .
+      - install -Dm644 usr/share/applications/hydrateme.desktop ${FLATPAK_DEST}/share/applications/org.hydrateme.HydrateMe.desktop
+      - install -Dm644 usr/share/icons/hicolor/scalable/apps/hydrateme.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/org.hydrateme.HydrateMe.svg
+    sources:
+      - type: dir
+        path: .

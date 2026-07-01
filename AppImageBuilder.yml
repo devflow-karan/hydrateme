@@ -1,0 +1,30 @@
+version: 1
+
+AppDir:
+  path: ./AppDir
+  app_info:
+    id: org.hydrateme.HydrateMe
+    name: HydrateMe
+    icon: hydrateme
+    version: 1.4.0
+    exec: usr/bin/hydrateme
+  apt:
+    arch: amd64
+    sources:
+      - sourceline: deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse
+    include:
+      - python3
+      - python3-pip
+      - python3-pyqt6
+      - python3-dbus
+      - libnotify-bin
+      - pulseaudio-utils
+  files:
+    exclude:
+      - usr/share/man
+      - usr/share/doc
+
+AppImage:
+  update-information: None
+  sign-key: None
+  arch: amd64

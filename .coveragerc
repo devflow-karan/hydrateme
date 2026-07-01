@@ -1,0 +1,8 @@
+[run]
+source = src/hydrateme
+omit =
+    src/hydrateme/__main__.py
+    src/hydrateme/startup.py
+
+[report]
+show_missing = True

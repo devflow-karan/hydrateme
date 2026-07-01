@@ -1,3 +1,36 @@
+# Packaging and Build Artifacts
 *.snap
 snapcraft-*.txt
 *.deb
+build/
+dist/
+*.egg-info/
+.eggs/
+AppDir/
+*.AppImage
+.flatpak-builder/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing & Coverage Caches
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# IDE & System Files
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
