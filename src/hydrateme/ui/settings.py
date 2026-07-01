@@ -45,6 +45,12 @@ class SettingsDialog(QDialog):
         self.check_sound.setAccessibleName(self.tr("Sound Notification Enabled Checkbox"))
         layout.addWidget(self.check_sound)
         
+        # Autostart setting
+        self.check_autostart = QCheckBox(self.tr("Launch on &startup"))
+        self.check_autostart.setChecked(self.config.autostart)
+        self.check_autostart.setAccessibleName(self.tr("Launch Application on System Startup Checkbox"))
+        layout.addWidget(self.check_autostart)
+        
         self.custom_sound_path = self.config.custom_sound_path
         
         # Custom sound UI
@@ -85,7 +91,8 @@ class SettingsDialog(QDialog):
         
         # Configure tab indices
         self.setTabOrder(self.spin_interval, self.check_sound)
-        self.setTabOrder(self.check_sound, self.btn_select_sound)
+        self.setTabOrder(self.check_sound, self.check_autostart)
+        self.setTabOrder(self.check_autostart, self.btn_select_sound)
         self.setTabOrder(self.btn_select_sound, self.btn_clear_sound)
         self.setTabOrder(self.btn_clear_sound, btn_test)
         self.setTabOrder(btn_test, btn_save)
@@ -108,6 +115,7 @@ class SettingsDialog(QDialog):
         logger.info("Settings save initiated.")
         self.config.interval = self.spin_interval.value()
         self.config.sound = self.check_sound.isChecked()
+        self.config.autostart = self.check_autostart.isChecked()
         self.config.custom_sound_path = self.custom_sound_path
         self.config.save()
         self.apply_callback()

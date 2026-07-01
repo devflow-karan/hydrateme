@@ -15,6 +15,7 @@ finish-args:
   - --talk-name=org.cinnamon.ScreenSaver
   - --device=dri
   - --pulseaudio
+  - --filesystem=xdg-config/autostart:create
 modules:
   - name: hydrateme
     buildsystem: simple

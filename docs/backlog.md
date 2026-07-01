@@ -1,6 +1,7 @@
 # Backlog
 
 ## TODO
+- Task: Add feature to autostart the application on system restart (controlled via Settings UI).
 
 ## DONE
 - Task: Modernize application structure, add automated testing suite, implement structured logging, crash reporting, multi-DE backends, AppImage/Flatpak, and CI/CD pipelines.

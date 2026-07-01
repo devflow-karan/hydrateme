@@ -8,7 +8,7 @@ from hydrateme.utils import paths
 
 logger = logging.getLogger("hydrateme")
 
-CURRENT_CONFIG_VERSION = 2
+CURRENT_CONFIG_VERSION = 3
 DEFAULT_INTERVAL = 30
 DEFAULT_SOUND = True
 
@@ -28,6 +28,13 @@ class MigrationManager:
                 data["sound"] = DEFAULT_SOUND
             if "custom_sound_path" not in data:
                 data["custom_sound_path"] = ""
+            version = 2
+        if version == 2:
+            logger.info("Upgrading configuration schema: version 2 -> 3")
+            data["version"] = 3
+            if "autostart" not in data:
+                data["autostart"] = True
+            version = 3
         return data
 
 class Config:
@@ -38,6 +45,7 @@ class Config:
         self.interval = DEFAULT_INTERVAL
         self.sound = DEFAULT_SOUND
         self.custom_sound_path = ""
+        self.autostart = True
         self.version = CURRENT_CONFIG_VERSION
         self.load()
 
@@ -54,14 +62,16 @@ class Config:
                     self.interval = data.get("interval", DEFAULT_INTERVAL)
                     self.sound = data.get("sound", DEFAULT_SOUND)
                     self.custom_sound_path = data.get("custom_sound_path", "")
+                    self.autostart = data.get("autostart", True)
                     self.version = data.get("version", CURRENT_CONFIG_VERSION)
                     self.save()
                 else:
                     self.interval = data.get("interval", DEFAULT_INTERVAL)
                     self.sound = data.get("sound", DEFAULT_SOUND)
                     self.custom_sound_path = data.get("custom_sound_path", "")
+                    self.autostart = data.get("autostart", True)
                     self.version = data.get("version", CURRENT_CONFIG_VERSION)
-                logger.info(f"Config loaded: version={self.version}, interval={self.interval}, sound={self.sound}")
+                logger.info(f"Config loaded: version={self.version}, interval={self.interval}, sound={self.sound}, autostart={self.autostart}")
             except Exception as e:
                 logger.error(f"Failed to parse config file: {e}")
         else:
@@ -78,8 +88,15 @@ class Config:
                     "version": self.version,
                     "interval": self.interval,
                     "sound": self.sound,
-                    "custom_sound_path": self.custom_sound_path
+                    "custom_sound_path": self.custom_sound_path,
+                    "autostart": self.autostart
                 }, f, indent=2)
             logger.info(f"Config successfully written to: {config_file}")
+            
+            # Setup autostart desktop file (handled via paths)
+            try:
+                paths.setup_autostart_desktop_file(self.autostart)
+            except Exception as ex:
+                logger.error(f"Failed to sync autostart file: {ex}")
         except Exception as e:
             logger.error(f"Failed to save config: {e}")

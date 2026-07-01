@@ -68,3 +68,27 @@ def test_sound_stop(clean_config_file, mock_subprocess, monkeypatch):
     manager.stop_sound()
     mock_process.terminate.assert_called_once()
     assert manager.process is None
+
+def test_sound_qt_multimedia_fallback(clean_config_file, monkeypatch):
+    """
+    Verifies fallback to Qt Multimedia sound player when CLI players are missing.
+    """
+    config = Config()
+    config.sound = True
+    manager = SoundManager(config)
+    
+    # Mock system commands to be missing
+    import shutil
+    monkeypatch.setattr(shutil, "which", lambda cmd: False)
+    monkeypatch.setattr("os.path.exists", lambda path: True)
+    
+    # Mock QSoundEffect and QUrl with raising=False
+    mock_sound = MagicMock()
+    monkeypatch.setattr("hydrateme.services.sound.QT_MULTIMEDIA_AVAILABLE", True)
+    monkeypatch.setattr("hydrateme.services.sound.QSoundEffect", lambda: mock_sound, raising=False)
+    monkeypatch.setattr("hydrateme.services.sound.QUrl", MagicMock(), raising=False)
+    
+    manager.play_reminder_sound()
+    mock_sound.setSource.assert_called_once()
+    mock_sound.play.assert_called_once()
+

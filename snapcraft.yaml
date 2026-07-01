@@ -13,6 +13,7 @@ apps:
     command: usr/bin/hydrateme
     plugs: [x11, wayland, audio-playback, desktop, desktop-legacy]
     desktop: usr/share/applications/hydrateme.desktop
+    autostart: hydrateme-autostart.desktop
 
 parts:
   hydrateme:
@@ -50,3 +51,4 @@ parts:
     source: .
     organize:
       usr/share/applications/hydrateme.desktop: usr/share/applications/hydrateme.desktop
+      usr/share/applications/hydrateme-autostart.desktop: usr/share/applications/hydrateme-autostart.desktop

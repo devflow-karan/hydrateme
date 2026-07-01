@@ -43,4 +43,5 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="HydrateMe - drink water reminder desktop application.")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging.")
     parser.add_argument("--verify", action="store_true", help="CI validation verify and exit.")
+    parser.add_argument("--autostart", action="store_true", help="Indicates the app was started via system autostart.")
     return parser.parse_args()

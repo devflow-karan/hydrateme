@@ -34,6 +34,13 @@ def main():
         print("Dry-run verification success")
         sys.exit(0)
 
+    # Autostart early exit check
+    from hydrateme.settings_manager import Config
+    config = Config()
+    if args.autostart and not config.autostart:
+        logger.info("Application started via autostart but launch on startup is disabled in configuration. Exiting.")
+        sys.exit(0)
+
     # Check lock file
     lock = IPCLock()
     if not lock.acquire():

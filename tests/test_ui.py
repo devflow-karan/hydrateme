@@ -38,11 +38,14 @@ def test_settings_dialog(clean_config_file, qapp, qtbot):
     
     assert dialog.spin_interval.value() == 30
     assert dialog.check_sound.isChecked() is True
+    assert dialog.check_autostart.isChecked() is True
     
     dialog.spin_interval.setValue(45)
     dialog.check_sound.setChecked(False)
+    dialog.check_autostart.setChecked(False)
     dialog.save_settings()
     
     assert config.interval == 45
     assert config.sound is False
+    assert config.autostart is False
     apply_callback.assert_called_once()
