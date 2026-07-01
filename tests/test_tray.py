@@ -47,3 +47,29 @@ def test_tray_load_fallback_icon(clean_config_file, monkeypatch):
     
     icon = tray_manager.load_icon()
     assert not icon.isNull()
+
+def test_tray_load_icon_null_pixmap_fallback(clean_config_file, monkeypatch, qapp):
+    """
+    Verifies that load_icon skips icons that exist but have null pixmaps (e.g. missing SVG reader).
+    """
+    tray_manager = TrayManager(qapp, None, None)
+    
+    # Mock os.path.exists to return True for the SVG path
+    monkeypatch.setattr("os.path.exists", lambda path: True)
+    
+    # Mock QIcon to return an icon whose isNull() is False, but pixmap(24, 24).isNull() is True
+    mock_icon = MagicMock()
+    mock_icon.isNull.return_value = False
+    mock_pixmap = MagicMock()
+    mock_pixmap.isNull.return_value = True
+    mock_icon.pixmap.return_value = mock_pixmap
+    
+    mock_qicon_class = MagicMock()
+    mock_qicon_class.fromTheme.return_value = MagicMock(isNull=lambda: True)
+    mock_qicon_class.side_effect = lambda *args: mock_icon if args else MagicMock()
+    
+    monkeypatch.setattr("hydrateme.tray_manager.QIcon", mock_qicon_class)
+    
+    # Verify that load_icon falls back to dynamic icon (since SVG has null pixmap)
+    icon = tray_manager.load_icon()
+    assert not icon.isNull()

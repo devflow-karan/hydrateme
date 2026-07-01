@@ -58,9 +58,13 @@ class TrayManager:
         3. Standard size PNG fallbacks
         4. Dynamically generated QIcon
         """
+        # Helper to check if icon actually has a valid graphic
+        def is_valid_icon(ico: QIcon) -> bool:
+            return not ico.isNull() and not ico.pixmap(24, 24).isNull()
+
         # 1. System Theme
         icon = QIcon.fromTheme("hydrateme")
-        if not icon.isNull():
+        if is_valid_icon(icon):
             logger.info("Loaded icon from system theme indicator.")
             return icon
             
@@ -68,7 +72,7 @@ class TrayManager:
         svg_path = get_asset_path("/usr/share/icons/hicolor/scalable/apps/hydrateme.svg")
         if os.path.exists(svg_path):
             icon = QIcon(svg_path)
-            if not icon.isNull():
+            if is_valid_icon(icon):
                 logger.info(f"Loaded icon from scalable SVG asset: {svg_path}")
                 return icon
                 
@@ -78,12 +82,12 @@ class TrayManager:
             png_path = get_asset_path(f"/usr/share/icons/hicolor/{size}/apps/hydrateme.png")
             if os.path.exists(png_path):
                 icon = QIcon(png_path)
-                if not icon.isNull():
+                if is_valid_icon(icon):
                     logger.info(f"Loaded icon from PNG asset size {size}: {png_path}")
                     return icon
                     
         # 4. Generate Fallback Icon dynamically
-        logger.warning("All icon files missing. Building fallback icon.")
+        logger.warning("All icon files missing or invalid. Building fallback icon.")
         return create_fallback_icon()
 
     def is_tray_available(self) -> bool:
