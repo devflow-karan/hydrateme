@@ -1,17 +1,16 @@
-# HydrateMe
+# 💧 HydrateMe
+
+[![Snap](https://snapcraft.io/hydrateme/badge.svg)](https://snapcraft.io/hydrateme)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/devflow-karan/hydrateme)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python)]()
+[![Platform](https://img.shields.io/badge/Linux-Ubuntu%20%7C%20Debian%20%7C%20Mint-orange)]()
 
 <p align="center">
   <img src="src/hydrateme/assets/images/logo.png" alt="HydrateMe Logo" width="128" height="128">
 </p>
 
 <h3 align="center">Modern & Elegant Desktop Hydration Reminders for Linux</h3>
-
-<p align="center">
-  <a href="https://github.com/devflow-karan/hydrateme/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License MIT"></a>
-  <a href="https://snapcraft.io/hydrateme"><img src="https://img.shields.io/badge/snapcraft-edge-orange.svg" alt="Snapcraft Edge"></a>
-  <a href="https://python.org"><img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg" alt="Python Support"></a>
-  <a href="https://pytest.org"><img src="https://img.shields.io/badge/tests-41%20passed-success.svg" alt="Tests status"></a>
-</p>
 
 ---
 
