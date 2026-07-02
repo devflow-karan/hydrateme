@@ -1,6 +1,7 @@
 name: hydrateme
 base: core22
 version: '1.4.0'
+license: MIT
 summary: A simple desktop app to remind you to drink water
 description: |
   HydrateMe runs in your system tray and periodically reminds you 

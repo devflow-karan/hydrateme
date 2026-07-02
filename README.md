@@ -12,12 +12,15 @@ HydrateMe is a lightweight desktop application for Ubuntu (22.04+) that reminds 
 ## Installation
 
 ### From .deb Package (Recommended)
-This is the easiest way to install HydrateMe on Ubuntu. Download the `.deb` file and install it using `apt` so that all dependencies are automatically resolved:
+This is the easiest way to install HydrateMe on Ubuntu (24.04+). Download the `.deb` file and install it using `apt` so that all dependencies are automatically resolved:
 
 ```bash
 sudo apt update
-sudo apt install ./hydrateme_1.3.5-1_all.deb
+sudo apt install ./hydrateme_1.4.0-1_all.deb
 ```
+
+> [!NOTE]
+> **For Ubuntu 22.04 users**: The `python3-pyqt6` package is not available in the default Ubuntu 22.04 APT repositories. If installing on Ubuntu 22.04, it is highly recommended to use the **Snap package** (which bundles all dependencies internally), or you must manually install PyQt6 using pip (`pip3 install PyQt6`) before running the application.
 
 ### From Snap
 Building the snap ensures an isolated environment with all dependencies bundled:
