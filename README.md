@@ -123,6 +123,14 @@ Please ensure that you run tests and format your code using `black` before submi
 
 ---
 
+## 📬 Contact
+
+[![Email](https://img.shields.io/badge/Email-karankumarsacher%40gmail.com-D14836?logo=gmail&logoColor=white)](mailto:karankumarsacher@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kkdev-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kkdev/)
+[![GitHub](https://img.shields.io/badge/GitHub-devflow--karan-181717?logo=github&logoColor=white)](https://github.com/devflow-karan)
+
+---
+
 ## 📄 License
 
 Distributed under the MIT License. See [LICENSE](file:///data/projects/2025/learningAI/HydrateMe/LICENSE) for more information.
