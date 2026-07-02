@@ -15,7 +15,7 @@ def test_tray_initialization_failure(clean_config_file, monkeypatch):
     mock_app = MagicMock()
     tray_manager = TrayManager(mock_app, None, None)
     
-    assert tray_manager.initialize() is False
+    assert tray_manager.initialize(MagicMock()) is False
 
 def test_tray_initialization_success(clean_config_file, monkeypatch, qapp):
     """
@@ -31,7 +31,7 @@ def test_tray_initialization_success(clean_config_file, monkeypatch, qapp):
     # Prevent GUI rendering errors by mocking QSystemTrayIcon methods
     monkeypatch.setattr(QSystemTrayIcon, "show", MagicMock())
     
-    assert tray_manager.initialize() is True
+    assert tray_manager.initialize(MagicMock()) is True
     assert tray_manager.tray is not None
     assert not tray_manager.tray.icon().isNull()
 

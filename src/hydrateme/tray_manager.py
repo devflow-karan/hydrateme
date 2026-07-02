@@ -6,7 +6,7 @@ import logging
 from PyQt6.QtWidgets import QSystemTrayIcon, QMenu
 from PyQt6.QtGui import QIcon, QAction
 from hydrateme.utils.paths import get_asset_path
-from hydrateme.utils.assets import create_fallback_icon
+from hydrateme.utils.assets import create_fallback_icon, get_themed_icon
 
 logger = logging.getLogger("hydrateme")
 
@@ -19,11 +19,13 @@ class TrayManager:
         self.open_settings_callback = open_settings_callback
         self.quit_callback = quit_callback
         self.tray = None
+        self.app_coordinator = None
 
-    def initialize(self) -> bool:
+    def initialize(self, app_coordinator) -> bool:
         """
         Attempts to initialize the tray icon. Returns True if successful, False otherwise.
         """
+        self.app_coordinator = app_coordinator
         if not QSystemTrayIcon.isSystemTrayAvailable():
             logger.warning("QSystemTrayIcon is not supported in this desktop context.")
             return False
@@ -36,11 +38,26 @@ class TrayManager:
         
         # Build context menu actions
         menu = QMenu()
-        settings_action = QAction("Settings", self.app)
+        
+        settings_action = QAction(get_themed_icon("settings"), "Open Settings", self.app)
         settings_action.triggered.connect(self.open_settings_callback)
         menu.addAction(settings_action)
         
-        quit_action = QAction("Quit", self.app)
+        remind_action = QAction(get_themed_icon("play"), "Remind Me Now", self.app)
+        remind_action.triggered.connect(self.app_coordinator.show_reminder)
+        menu.addAction(remind_action)
+        
+        self.pause_action = QAction(get_themed_icon("pause"), "Pause Reminders", self.app)
+        self.pause_action.triggered.connect(self.app_coordinator.toggle_pause)
+        menu.addAction(self.pause_action)
+        
+        about_action = QAction(get_themed_icon("about"), "About", self.app)
+        about_action.triggered.connect(self.show_about)
+        menu.addAction(about_action)
+        
+        menu.addSeparator()
+        
+        quit_action = QAction(get_themed_icon("quit"), "Quit", self.app)
         quit_action.triggered.connect(self.quit_callback)
         menu.addAction(quit_action)
         
@@ -49,6 +66,11 @@ class TrayManager:
         
         logger.info("System tray icon loaded and shown.")
         return True
+
+    def show_about(self):
+        from hydrateme.ui.about import AboutDialog
+        dialog = AboutDialog(self.app_coordinator.settings_dialog)
+        dialog.exec()
 
     def load_icon(self) -> QIcon:
         """
@@ -107,3 +129,15 @@ class TrayManager:
                 QSystemTrayIcon.MessageIcon.Information,
                 10000
             )
+
+    def set_paused_state(self, paused: bool):
+        """
+        Toggles the pause menu action text and icon state.
+        """
+        if hasattr(self, "pause_action") and self.pause_action:
+            if paused:
+                self.pause_action.setText("Resume Reminders")
+                self.pause_action.setIcon(get_themed_icon("play"))
+            else:
+                self.pause_action.setText("Pause Reminders")
+                self.pause_action.setIcon(get_themed_icon("pause"))

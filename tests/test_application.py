@@ -16,7 +16,7 @@ def test_application_start_with_tray(clean_config_file, monkeypatch, qapp):
     app = HydrateMeApplication(qapp, args)
     
     # Force tray setup checks
-    monkeypatch.setattr(app.tray_manager, "initialize", lambda: True)
+    monkeypatch.setattr(app.tray_manager, "initialize", lambda *args, **kwargs: True)
     
     app.start()
     assert app.scheduler.timer.isActive() is True

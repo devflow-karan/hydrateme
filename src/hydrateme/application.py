@@ -57,7 +57,7 @@ class HydrateMeApplication(QObject):
         logger.info("Initializing application startup sequence...")
         
         # Bind QSystemTrayIcon
-        tray_ok = self.tray_manager.initialize()
+        tray_ok = self.tray_manager.initialize(self)
         
         # Start timer scheduler
         self.scheduler.start()
@@ -130,14 +130,18 @@ class HydrateMeApplication(QObject):
             self.trigger_sound()
             
             self.reminder_popup = ReminderPopup(self)
-            self.reminder_popup.exec()
+            result = self.reminder_popup.exec()
             
             # Stop loops
             self.sound_manager.stop_sound()
             self.reminder_popup = None
             
             # Restart countdown timer
-            self.scheduler.start()
+            if result == 2:  # Snoozed
+                logger.info("Reminder snoozed. Starting 15-minute snooze timer.")
+                QTimer.singleShot(15 * 60 * 1000, self.show_reminder)
+            else:
+                self.scheduler.start()
 
     def check_for_updates(self):
         """
@@ -153,3 +157,17 @@ class HydrateMeApplication(QObject):
         self.sound_manager.stop_sound()
         self.scheduler.stop()
         self.qapp.quit()
+
+    def toggle_pause(self):
+        """
+        Pauses or resumes reminder loops.
+        """
+        if self.scheduler.timer.isActive():
+            self.scheduler.stop()
+            self.sound_manager.stop_sound()
+            logger.info("Reminder loops paused.")
+            self.tray_manager.set_paused_state(True)
+        else:
+            self.scheduler.start()
+            logger.info("Reminder loops resumed.")
+            self.tray_manager.set_paused_state(False)

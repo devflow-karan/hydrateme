@@ -62,6 +62,11 @@ def main():
     qapp = QApplication(sys.argv)
     qapp.setApplicationName("HydrateMe")
     
+    # Apply global stylesheet theme on startup
+    from hydrateme.ui.theme import get_theme_stylesheet, detect_system_dark_mode
+    is_dark = detect_system_dark_mode() if config.theme == "auto" else (config.theme == "dark")
+    qapp.setStyleSheet(get_theme_stylesheet(is_dark))
+    
     # Instantiate coordinator
     app_coordinator = HydrateMeApplication(qapp, args)
     

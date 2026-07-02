@@ -155,3 +155,12 @@ def setup_autostart_desktop_file(enabled: bool):
     except Exception as e:
         logger.error(f"Failed to copy and configure autostart entry: {e}")
 
+def get_bundled_asset_path(relative_path: str) -> str:
+    """
+    Resolves asset path dynamically relative to this source file, which supports
+    development, deb, snap and flatpak layouts cleanly.
+    """
+    return os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..", "assets", relative_path.lstrip("/"))
+    )
+

@@ -46,6 +46,7 @@ class Config:
         self.sound = DEFAULT_SOUND
         self.custom_sound_path = ""
         self.autostart = True
+        self.theme = "auto"
         self.version = CURRENT_CONFIG_VERSION
         self.load()
 
@@ -63,6 +64,7 @@ class Config:
                     self.sound = data.get("sound", DEFAULT_SOUND)
                     self.custom_sound_path = data.get("custom_sound_path", "")
                     self.autostart = data.get("autostart", True)
+                    self.theme = data.get("theme", "auto")
                     self.version = data.get("version", CURRENT_CONFIG_VERSION)
                     self.save()
                 else:
@@ -70,8 +72,9 @@ class Config:
                     self.sound = data.get("sound", DEFAULT_SOUND)
                     self.custom_sound_path = data.get("custom_sound_path", "")
                     self.autostart = data.get("autostart", True)
+                    self.theme = data.get("theme", "auto")
                     self.version = data.get("version", CURRENT_CONFIG_VERSION)
-                logger.info(f"Config loaded: version={self.version}, interval={self.interval}, sound={self.sound}, autostart={self.autostart}")
+                logger.info(f"Config loaded: version={self.version}, interval={self.interval}, sound={self.sound}, autostart={self.autostart}, theme={self.theme}")
             except Exception as e:
                 logger.error(f"Failed to parse config file: {e}")
         else:
@@ -89,7 +92,8 @@ class Config:
                     "interval": self.interval,
                     "sound": self.sound,
                     "custom_sound_path": self.custom_sound_path,
-                    "autostart": self.autostart
+                    "autostart": self.autostart,
+                    "theme": self.theme
                 }, f, indent=2)
             logger.info(f"Config successfully written to: {config_file}")
             
