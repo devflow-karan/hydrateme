@@ -4,9 +4,20 @@ Section: utils
 Priority: optional
 Architecture: all
 Depends: python3 (>= 3.10), python3-pyqt6, python3-dbus, pulseaudio-utils, libnotify-bin, libxcb-cursor0, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, libxcb-render-util0, libxcb-xinerama0, libxcb-shape0, libxcb-xfixes0, libxkbcommon-x11-0, libegl1, libgl1
-Maintainer: "Karan Kumar" <karankumarsacher@gmail.com>
-Description: A desktop app that reminds you to drink water every 30 minutes
- A simple PyQt6 application that runs in the background
- and pops up a "force attention" window to remind you to hydrate.
- It integrates with GNOME screen lock to show notifications
- instead of a popup if you are away.
+Maintainer: Karan Kumar <karankumarsacher@gmail.com>
+Description: Smart hydration reminder for Linux desktops
+ HydrateMe is a lightweight desktop application that helps users
+ build healthy hydration habits with customizable reminders.
+ .
+ Running quietly in the system tray, it delivers attention-grabbing
+ notifications and reminder windows even while you are working.
+ When your screen is locked or you are away, HydrateMe automatically
+ switches to desktop notifications instead of interrupting your session.
+ .
+ Features:
+  - Smart hydration reminders
+  - System tray integration
+  - Custom reminder intervals
+  - GNOME screen lock detection
+  - Native Linux desktop experience
+  - Lightweight and low resource usage

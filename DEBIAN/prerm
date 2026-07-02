@@ -1,0 +1,27 @@
+#!/bin/sh
+# prerm script for hydrateme
+# Triggered before the package files are removed.
+
+set -e
+
+case "$1" in
+    remove|deconfigure)
+        # Kill any running instances of hydrateme (matching the specific script path to avoid killing apt/dpkg)
+        if pgrep -f "hydrateme/main.py" >/dev/null 2>&1; then
+            echo "Stopping running HydrateMe instances..."
+            pkill -f "hydrateme/main.py" || true
+        fi
+        ;;
+    upgrade|failed-upgrade)
+        if pgrep -f "hydrateme/main.py" >/dev/null 2>&1; then
+            echo "Stopping running HydrateMe instances for upgrade..."
+            pkill -f "hydrateme/main.py" || true
+        fi
+        ;;
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

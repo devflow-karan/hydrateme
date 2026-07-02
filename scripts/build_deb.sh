@@ -35,6 +35,7 @@ chmod 755 "$BUILD_DIR/DEBIAN"
 chmod 644 "$BUILD_DIR/DEBIAN/control"
 [ -f "$BUILD_DIR/DEBIAN/postinst" ] && chmod 755 "$BUILD_DIR/DEBIAN/postinst"
 [ -f "$BUILD_DIR/DEBIAN/postrm" ] && chmod 755 "$BUILD_DIR/DEBIAN/postrm"
+[ -f "$BUILD_DIR/DEBIAN/prerm" ] && chmod 755 "$BUILD_DIR/DEBIAN/prerm"
 chmod +x "$BUILD_DIR/usr/bin/hydrateme"
 chmod +x "$BUILD_DIR/usr/share/hydrateme/main.py"
 

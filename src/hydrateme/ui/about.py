@@ -3,7 +3,10 @@
 
 import os
 import platform
+import logging
 from PyQt6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QWidget
+
+logger = logging.getLogger("hydrateme")
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 from hydrateme.utils.assets import get_themed_icon

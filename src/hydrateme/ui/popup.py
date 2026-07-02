@@ -59,7 +59,7 @@ class ReminderPopup(QDialog):
         self.card.setGraphicsEffect(self.shadow)
         
         # Card body layout
-        card_layout = QVBoxLayout(self.card)
+        card_layout = self.card.card_layout
         card_layout.setContentsMargins(20, 20, 20, 20)
         card_layout.setSpacing(12)
         
