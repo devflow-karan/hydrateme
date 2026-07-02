@@ -18,6 +18,7 @@ class NotificationManager:
     """
     def __init__(self, tray_manager=None):
         self.tray_manager = tray_manager
+        self.last_notification_id = 0
 
     def send_notification(self, title: str, message: str, icon_path: str = "") -> bool:
         """
@@ -41,9 +42,12 @@ class NotificationManager:
             bus = dbus.SessionBus()
             notif_obj = bus.get_object('org.freedesktop.Notifications', '/org/freedesktop/Notifications')
             notif_interface = dbus.Interface(notif_obj, 'org.freedesktop.Notifications')
-            notif_interface.Notify(
+            
+            replaces_id = getattr(self, "last_notification_id", 0)
+            
+            notif_id = notif_interface.Notify(
                 "HydrateMe",
-                0,
+                replaces_id,
                 icon_path,
                 title,
                 message,
@@ -51,7 +55,8 @@ class NotificationManager:
                 {"urgency": dbus.Byte(2)},  # High/critical priority
                 10000  # Duration: 10s
             )
-            logger.info("Notification sent via DBus interface.")
+            self.last_notification_id = int(notif_id)
+            logger.info(f"Notification sent via DBus interface (ID={self.last_notification_id}).")
             return True
         except Exception as e:
             logger.warning(f"DBus notification failed: {e}")

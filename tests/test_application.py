@@ -58,3 +58,15 @@ def test_application_reminder_locked(clean_config_file, monkeypatch, qapp):
     app.sound_manager.play_reminder_sound.assert_called_once()
     app.notification_manager.send_notification.assert_called_once()
     assert app.scheduler.timer.isActive() is True
+
+def test_application_show_reminder_ignored_if_already_active(clean_config_file, monkeypatch, qapp):
+    """
+    Verifies that show_reminder returns early without actions if a reminder popup is active.
+    """
+    args = MagicMock(debug=False)
+    app = HydrateMeApplication(qapp, args)
+    app.reminder_popup = MagicMock()
+    app.trigger_sound = MagicMock()
+    
+    app.show_reminder()
+    app.trigger_sound.assert_not_called()

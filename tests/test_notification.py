@@ -40,3 +40,25 @@ def test_notification_priority_subprocess(monkeypatch):
     mock_run.assert_called_once()
     args = mock_run.call_args[0][0]
     assert args[0] == "notify-send"
+
+def test_notification_replaces_id(mock_dbus, monkeypatch):
+    """
+    Verifies that NotificationManager tracks last_notification_id and passes it as replaces_id.
+    """
+    nm = NotificationManager(tray_manager=None)
+    mock_dbus["interface"].Notify.return_value = 42
+    
+    # First notification: replaces_id should be 0
+    assert nm.send_notification("Title 1", "Msg 1") is True
+    mock_dbus["interface"].Notify.assert_called_with(
+        "HydrateMe", 0, "", "Title 1", "Msg 1", [], {"urgency": 2}, 10000
+    )
+    assert nm.last_notification_id == 42
+    
+    # Second notification: replaces_id should be 42
+    mock_dbus["interface"].Notify.return_value = 43
+    assert nm.send_notification("Title 2", "Msg 2") is True
+    mock_dbus["interface"].Notify.assert_called_with(
+        "HydrateMe", 42, "", "Title 2", "Msg 2", [], {"urgency": 2}, 10000
+    )
+    assert nm.last_notification_id == 43

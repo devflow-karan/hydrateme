@@ -108,6 +108,10 @@ class HydrateMeApplication(QObject):
         """
         Triggered when timer scheduler countdown reaches target.
         """
+        if self.reminder_popup is not None:
+            logger.info("A reminder popup is already active. Ignoring duplicate reminder request.")
+            return
+
         logger.info("Hydration scheduler interval met. Checking lock screen state.")
         self.scheduler.stop()
         
