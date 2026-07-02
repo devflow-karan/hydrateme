@@ -34,9 +34,12 @@ HydrateMe is a beautifully designed, lightweight desktop application engineered 
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/devflow-karan/hydrateme/master/docs/screenshots/settings.png" alt="Settings Interface" width="600">
-  <br>
-  <em>Settings Interface featuring sidebar navigation, ToggleSwitches, and System theme integration.</em>
+  <img src="https://raw.githubusercontent.com/devflow-karan/hydrateme/master/docs/general.png" alt="General Settings" width="380">
+  <img src="https://raw.githubusercontent.com/devflow-karan/hydrateme/master/docs/sounds.png" alt="Sound Settings" width="380">
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devflow-karan/hydrateme/master/docs/about.png" alt="About Dialog" width="380">
+  <img src="https://raw.githubusercontent.com/devflow-karan/hydrateme/master/docs/notifications.png" alt="Notifications Settings" width="380">
 </p>
 
 ---
