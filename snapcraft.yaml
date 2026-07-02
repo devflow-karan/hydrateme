@@ -3,6 +3,11 @@ base: core22
 version: '1.4.0'
 license: MIT
 summary: A simple desktop app to remind you to drink water
+architectures:
+  - build-on: [amd64]
+    build-for: [amd64]
+  - build-on: [arm64]
+    build-for: [arm64]
 description: |
   HydrateMe runs in your system tray and periodically reminds you 
   to drink water. Uses custom looping audio until you hydrate!
