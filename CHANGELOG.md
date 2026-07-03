@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.5.3] - 2026-07-03
+### Fixed
+- Fixed tray icon visibility under strict Snap confinement by adding the `unity7` plug to the app definition.
+- Fixed layout design issue causing Settings Dialog save/cancel buttons to clip by increasing default dialog size and adjusting sidebar spacing.
+- Updated `APP_VERSION` in the crash service so the "About" dialog displays the correct current version.
+
+## [1.5.2] - 2026-07-03
+### Changed
+- Integrated `gnome` extension in `snapcraft.yaml` to handle library setups, theme integrations, and font resolution natively.
+- Modified local build script to clean up old `.snap` files automatically before starting a new build.
+
+## [1.5.1] - 2026-07-03
+### Fixed
+- Fixed snap launch failure by packaging `usr/share/hydrateme/main.py` in the `desktop-entry` stage configuration.
+
 ## [1.5.0] - 2026-07-03
 ### Added
 - `scripts/build_snap.sh`: new script to build the snap locally and optionally push to the Snap Store (`--push`) with LXD or host (`--destructive`) build modes.

@@ -29,8 +29,8 @@ class SettingsDialog(QDialog):
         self.parent_app = parent_app
         
         self.setWindowTitle(self.tr("HydrateMe Settings"))
-        self.resize(650, 480)
-        self.setMinimumSize(600, 420)
+        self.resize(680, 520)
+        self.setMinimumSize(620, 480)
         
         # Apply theme stylesheet dynamically
         is_dark = detect_system_dark_mode() if self.config.theme == "auto" else (self.config.theme == "dark")
@@ -48,6 +48,7 @@ class SettingsDialog(QDialog):
         self.sidebar = QListWidget()
         self.sidebar.setFixedWidth(180)
         self.sidebar.setIconSize(QSize(18, 18))
+        self.sidebar.setSpacing(4)
         self.sidebar.currentRowChanged.connect(self.switch_tab)
         
         # Right Stacked Panels

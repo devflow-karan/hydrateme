@@ -66,13 +66,22 @@ fi
 VERSION=$(grep '"version"' package.json | cut -d '"' -f 4)
 info "Building HydrateMe snap v${BOLD}${VERSION}${RESET}"
 
+# ── Clean old snaps ────────────────────────────────────────────────────────────
+info "Removing old .snap files..."
+rm -f hydrateme_*.snap
+
+
 # ── Build ──────────────────────────────────────────────────────────────────────
 if [ "$DESTRUCTIVE" = true ]; then
   info "Mode: destructive (building directly on host)"
-  snapcraft --destructive-mode
+  if [ "$EUID" -ne 0 ]; then
+    info "Destructive mode requires root to install build packages — re-running with sudo..."
+    exec sudo "$0" "$@"
+  fi
+  snapcraft pack --destructive-mode
 else
   info "Mode: LXD container (isolated build)"
-  snapcraft --use-lxd
+  snapcraft pack --use-lxd
 fi
 
 # ── Locate built snap ──────────────────────────────────────────────────────────

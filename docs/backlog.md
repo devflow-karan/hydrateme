@@ -4,6 +4,11 @@
 - Task: Add feature to autostart the application on system restart (controlled via Settings UI).
 
 ## DONE
+- Task: Resolve tray icon visibility in snap (via `unity7` plug), Settings Dialog button clipping, and correct About version display.
+- Task: Integrate `gnome` desktop extension and configure build script to automatically remove old snap files.
+
+- Task: Fix snap launch entry point failure by staging `usr/share/hydrateme/main.py`.
+
 - Task: Add `scripts/build_snap.sh` to build snap locally with --push and --destructive flags, and update CI workflows to use direct snapcraft commands.
 - Task: Migrate snap base from `core22` to `core24` so the snap runs natively on Ubuntu 24.04 without requiring manual `core22` installation.
 - Task: Modernize application structure, add automated testing suite, implement structured logging, crash reporting, multi-DE backends, AppImage/Flatpak, and CI/CD pipelines.

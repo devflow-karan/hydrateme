@@ -9,6 +9,10 @@ dist/
 AppDir/
 *.AppImage
 .flatpak-builder/
+.craft/
+parts/
+stage/
+prime/
 
 # Python Cache
 __pycache__/

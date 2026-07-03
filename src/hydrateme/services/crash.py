@@ -14,7 +14,7 @@ from hydrateme.utils import paths
 
 logger = logging.getLogger("hydrateme")
 
-APP_VERSION = "1.4.0"
+APP_VERSION = "1.5.3"
 
 def get_packaging_type() -> str:
     """

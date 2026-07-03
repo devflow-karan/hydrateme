@@ -31,7 +31,7 @@ jobs:
         run: sudo snap install snapcraft --classic
 
       - name: Build Snap Package
-        run: snapcraft --destructive-mode
+        run: snapcraft pack --destructive-mode
 
       - name: Publish Snap to Store
         env:

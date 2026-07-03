@@ -1,14 +1,17 @@
 name: hydrateme
 base: core24
-version: '1.5.0'
+version: '1.5.3'
+title: HydrateMe
+contact: mailto:karankumarsacher@gmail.com
+website: https://github.com/devflow-karan/hydrateme
+source-code: https://github.com/devflow-karan/hydrateme
+issues: https://github.com/devflow-karan/hydrateme/issues
 license: MIT
 summary: A simple desktop app to remind you to drink water
 icon: snap/gui/icon.png
-architectures:
-  - build-on: [amd64]
-    build-for: [amd64]
-  - build-on: [arm64]
-    build-for: [arm64]
+platforms:
+  amd64:
+  arm64:
 description: |
   HydrateMe runs in your system tray and periodically reminds you 
   to drink water. Uses custom looping audio until you hydrate!
@@ -18,7 +21,8 @@ confinement: strict
 apps:
   hydrateme:
     command: usr/bin/hydrateme
-    plugs: [x11, wayland, audio-playback, desktop, desktop-legacy, home]
+    extensions: [gnome]
+    plugs: [x11, wayland, audio-playback, desktop, desktop-legacy, home, unity7]
     desktop: usr/share/applications/hydrateme.desktop
     autostart: hydrateme-autostart.desktop
 
@@ -67,3 +71,4 @@ parts:
       - usr/share/icons/hicolor/scalable/apps/hydrateme.svg
       - usr/share/sounds/paani.wav
       - usr/bin/hydrateme
+      - usr/share/hydrateme/main.py
