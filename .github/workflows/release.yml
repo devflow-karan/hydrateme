@@ -27,10 +27,17 @@ jobs:
           chmod +x scripts/build_deb.sh
           ./scripts/build_deb.sh
 
-      - name: Build and Publish Snap Package
-        uses: samuelmeuli/action-snapcraft@v2
-        with:
-          snapcraft-token: ${{ secrets.SNAPCRAFT_TOKEN }}
+      - name: Install Snapcraft
+        run: sudo snap install snapcraft --classic
+
+      - name: Build Snap Package
+        run: snapcraft --destructive-mode
+
+      - name: Publish Snap to Store
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        run: |
+          snapcraft upload --release=stable hydrateme_*.snap
 
       - name: Upload assets to GitHub Release
         uses: softprops/action-gh-release@v1
@@ -40,3 +47,4 @@ jobs:
             hydrateme_*.snap
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

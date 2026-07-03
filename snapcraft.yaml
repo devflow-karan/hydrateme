@@ -1,6 +1,6 @@
 name: hydrateme
 base: core24
-version: '1.4.1'
+version: '1.5.0'
 license: MIT
 summary: A simple desktop app to remind you to drink water
 icon: snap/gui/icon.png

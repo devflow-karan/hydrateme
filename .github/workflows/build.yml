@@ -44,7 +44,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Compile Snapcraft package
-        uses: samuelmeuli/action-snapcraft@v2
+      - name: Install Snapcraft
+        run: sudo snap install snapcraft --classic
+
+      - name: Build Snap Package
+        run: snapcraft --destructive-mode
+
+      - name: Upload snap artifact
+        uses: actions/upload-artifact@v4
         with:
-          skip-publish: true
+          name: hydrateme-snap
+          path: hydrateme_*.snap

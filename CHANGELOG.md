@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0] - 2026-07-03
+### Added
+- `scripts/build_snap.sh`: new script to build the snap locally and optionally push to the Snap Store (`--push`) with LXD or host (`--destructive`) build modes.
+
+### Changed
+- Replaced deprecated `samuelmeuli/action-snapcraft@v2` in CI workflows with direct `snapcraft` commands (modern Canonical approach).
+- Updated `release.yml` to use `SNAPCRAFT_STORE_CREDENTIALS` secret and `snapcraft upload --release=stable`.
+- `build.yml` now uploads the built `.snap` as a downloadable GitHub Actions artifact.
+
 ## [1.4.1] - 2026-07-03
 ### Fixed
 - Migrated snap base from `core22` to `core24` so the snap works natively on Ubuntu 24.04 (Noble) without requiring manual `core22` installation.
