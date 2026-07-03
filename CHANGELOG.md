@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.1] - 2026-07-03
+### Fixed
+- Migrated snap base from `core22` to `core24` so the snap works natively on Ubuntu 24.04 (Noble) without requiring manual `core22` installation.
+- Added `home` plug to snap app definition for proper XDG config/state directory access under `core24` strict confinement.
+- Added `libgirepository1.0-dev` build package for improved GObject introspection compatibility on Noble.
+
 ## [1.4.0] - 2026-07-01
 ### Added
 - Modular architecture with deep package segmentation (src/hydrateme/).

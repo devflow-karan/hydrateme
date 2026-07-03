@@ -1,6 +1,6 @@
 name: hydrateme
-base: core22
-version: '1.4.0'
+base: core24
+version: '1.4.1'
 license: MIT
 summary: A simple desktop app to remind you to drink water
 icon: snap/gui/icon.png
@@ -18,7 +18,7 @@ confinement: strict
 apps:
   hydrateme:
     command: usr/bin/hydrateme
-    plugs: [x11, wayland, audio-playback, desktop, desktop-legacy]
+    plugs: [x11, wayland, audio-playback, desktop, desktop-legacy, home]
     desktop: usr/share/applications/hydrateme.desktop
     autostart: hydrateme-autostart.desktop
 
@@ -35,6 +35,7 @@ parts:
       - python3-dev
       - gcc
       - libglib2.0-dev
+      - libgirepository1.0-dev
     stage-packages:
       - libnotify-bin
       - pulseaudio-utils

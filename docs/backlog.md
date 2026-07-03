@@ -4,6 +4,7 @@
 - Task: Add feature to autostart the application on system restart (controlled via Settings UI).
 
 ## DONE
+- Task: Migrate snap base from `core22` to `core24` so the snap runs natively on Ubuntu 24.04 without requiring manual `core22` installation.
 - Task: Modernize application structure, add automated testing suite, implement structured logging, crash reporting, multi-DE backends, AppImage/Flatpak, and CI/CD pipelines.
 - Task: Add custom audio configuration for hydration reminder.
 - Task: Enforce single-instance application behavior using fcntl locking.
